@@ -47,8 +47,16 @@ spec:
           env:
             - name: REDIS
               value: redis-0.redis-headless.svc.cluster.local
-            - name: POSTGRES
-              value: postgres-0.postgres-headless.svc.cluster.local
+            - name: POSTGRES_HOST
+              value: postgres-0.postgres-headless.default.svc.cluster.local
+            - name: POSTGRES_PORT
+              value: "5432"
+            - name: POSTGRES_DB
+              value: postgres
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: postgres
           resources:
             requests:
               cpu: "100m"
@@ -66,6 +74,7 @@ metadata:
 spec:
   selector:
     app: worker
+  type: NodePort
   ports:
     - port: 8080
       targetPort: 8080
