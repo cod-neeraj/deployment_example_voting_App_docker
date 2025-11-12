@@ -43,7 +43,7 @@ spec:
               echo "Redis is ready!"
       containers:
         - name: worker
-          image: neerajdeveloper/worker:latest
+          image: dockersamples/examplevotingapp_worker
           env:
             - name: REDIS
               value: redis-0.redis-headless.svc.cluster.local

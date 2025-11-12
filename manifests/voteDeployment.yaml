@@ -32,7 +32,7 @@ spec:
 
       containers:
         - name: vote
-          image: dockersamples/examplevotingapp_vote:latest
+          image: dockersamples/examplevotingapp_vote
           ports:
             - containerPort: 80
           env:

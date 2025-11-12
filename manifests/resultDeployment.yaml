@@ -31,7 +31,7 @@ spec:
               echo "Postgres is ready!"
       containers:
         - name: result
-          image: neerajdeveloper/result:latest
+          image: dockersamples/examplevotingapp_result
           ports:
             - containerPort: 8080
           env:
