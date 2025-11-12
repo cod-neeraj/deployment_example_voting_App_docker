@@ -45,16 +45,16 @@ spec:
         - name: worker
           image: dockersamples/examplevotingapp_worker
           env:
-             - name: POSTGRES_HOST
-               value: postgres-0.postgres-headless.default.svc.cluster.local
-             - name: POSTGRES_PORT
-               value: "5432"
-             - name: POSTGRES_DB
-               value: petclinic
-             - name: POSTGRES_USER
-               value: petclinic
-             - name: POSTGRES_PASSWORD
-               value: petclinic
+            - name: REDIS
+              value: redis-headless.default.svc.cluster.local
+            - name: POSTGRES_HOST
+              value: postgres-headless.default.svc.cluster.local
+            - name: POSTGRES_PORT
+              value: "5432"
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: postgres
 ---
 apiVersion: v1
 kind: Service
