@@ -5,7 +5,7 @@ metadata:
   labels:
     app: worker
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: worker
@@ -66,7 +66,6 @@ metadata:
 spec:
   selector:
     app: worker
-    nodeSelector: mainapp
   ports:
     - port: 8080
       targetPort: 8080

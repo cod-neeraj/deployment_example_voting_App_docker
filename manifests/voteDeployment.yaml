@@ -5,7 +5,7 @@ metadata:
   labels:
     app: vote
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: vote
@@ -53,7 +53,6 @@ metadata:
 spec:
   selector:
     app: vote
-  type: LoadBalancer
   ports:
     - port: 80
       targetPort: 80
