@@ -18,17 +18,17 @@ spec:
         role: mainapp
       initContainers:
         - name: wait-for-postgres
-          image: busybox:1.36
+          image: busybox:1.36-glibc
           command:
-            - sh
-            - -c
-            - |
-              echo "Waiting for Postgres..."
-              until nc -z postgres-headless 5432 >/dev/null 2>&1; do
-                echo "Postgres not ready, retrying..."
-                sleep 2
-              done
-              echo "Postgres is ready!"
+          - sh
+          - -c
+          - |
+            echo "Waiting for Postgres to be ready..."
+            until nc -z postgres-0.postgres-headless 5432 >/dev/null 2>&1; do
+              echo "Postgres not ready, retrying..."
+              sleep 2
+            done
+            echo "Postgres is ready!"
         - name: wait-for-redis
           image: busybox:1.36
           command:
