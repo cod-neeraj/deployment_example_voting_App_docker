@@ -66,6 +66,7 @@ metadata:
 spec:
   selector:
     app: worker
+    nodeSelector: mainapp
   ports:
     - port: 8080
       targetPort: 8080
