@@ -22,11 +22,11 @@ spec:
             - containerPort: 5432
           env:
             - name: POSTGRES_DB
-              value: "petclinic"
+              value: "postgres"
             - name: POSTGRES_USER
-              value: "petclinic"
+              value: "postgres"
             - name: POSTGRES_PASSWORD
-              value: "petclinic"
+              value: "postgres"
           volumeMounts:
             - name: postgres-storage
               mountPath: /var/lib/postgresql/data
