@@ -35,16 +35,16 @@ spec:
           ports:
             - containerPort: 8080
           env:
-            - name: POSTGRES_HOST
-              value: postgres-headless.default.svc.cluster.local
-            - name: POSTGRES_PORT
-              value: "5432"
-            - name: POSTGRES_DB
-              value: petclinic
-            - name: POSTGRES_USER
-              value: petclinic
-            - name: POSTGRES_PASSWORD
-              value: petclinic
+             - name: POSTGRES_HOST
+               value: postgres-0.postgres-headless.default.svc.cluster.local
+             - name: POSTGRES_PORT
+               value: "5432"
+             - name: POSTGRES_DB
+               value: petclinic
+             - name: POSTGRES_USER
+               value: petclinic
+             - name: POSTGRES_PASSWORD
+               value: petclinic
 ---
 apiVersion: v1
 kind: Service
