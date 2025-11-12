@@ -51,8 +51,10 @@ spec:
               value: postgres-headless.default.svc.cluster.local
             - name: POSTGRES_PORT
               value: "5432"
-            - name: POSTGRES_USER
+            - name: POSTGRES_DB
               value: postgres
+            - name: POSTGRES_USER
+              value: petclinic
             - name: POSTGRES_PASSWORD
               value: postgres
 ---
