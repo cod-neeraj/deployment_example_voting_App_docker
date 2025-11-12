@@ -25,7 +25,7 @@ spec:
               value: "petclinic"
             - name: POSTGRES_USER
               value: "petclinic"
-            - name: "POSTGRES_PASSWORD"
+            - name: POSTGRES_PASSWORD
               value: "petclinic"
           volumeMounts:
             - name: postgres-storage

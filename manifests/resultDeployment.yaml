@@ -23,8 +23,8 @@ spec:
             - sh
             - -c
             - |
-              echo "Waiting for Postgres to be ready..."
-              until nc -z postgres-0.postgres-headless 5432 >/dev/null 2>&1; do
+              echo "Waiting for Postgres..."
+              until nc -z postgres-headless 5432 >/dev/null 2>&1; do
                 echo "Postgres not ready, retrying..."
                 sleep 2
               done
@@ -35,18 +35,16 @@ spec:
           ports:
             - containerPort: 8080
           env:
-          - name: POSTGRES_HOST
-            value: postgres-0.postgres-headless.default.svc.cluster.local
-          - name: POSTGRES_PORT
-            value: "5432"
-          - name: POSTGRES_DB
-            value: postgres
-          - name: POSTGRES_USER
-            value: postgres
-          - name: POSTGRES_PASSWORD
-            value: postgres
-
-      restartPolicy: Always
+            - name: POSTGRES_HOST
+              value: postgres-headless.default.svc.cluster.local
+            - name: POSTGRES_PORT
+              value: "5432"
+            - name: POSTGRES_DB
+              value: petclinic
+            - name: POSTGRES_USER
+              value: petclinic
+            - name: POSTGRES_PASSWORD
+              value: petclinic
 ---
 apiVersion: v1
 kind: Service
@@ -57,6 +55,6 @@ spec:
     app: result
   type: NodePort
   ports:
-    - port: 8081
-      targetPort: 80
-      nodePort: 3100
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30081
