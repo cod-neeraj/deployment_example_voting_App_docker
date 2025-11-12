@@ -24,7 +24,7 @@ spec:
             - -c
             - |
               echo "Waiting for Postgres to be ready..."
-              until nc -z postgres-0.postgres-headless.svc.cluster.local 5432; do
+              until nc -z postgres-0.postgres-headless 5432 >/dev/null 2>&1; do
                 echo "Postgres not ready, retrying..."
                 sleep 2
               done
@@ -35,8 +35,8 @@ spec:
             - sh
             - -c
             - |
-              echo "Waiting for Redis to be ready..."
-              until nc -z redis-0.redis-headless.svc.cluster.local 6379; do
+              echo "Waiting for Redis..."
+              until nc -vz redis-0.redis-headless 6379 >/dev/null 2>&1; do
                 echo "Redis not ready, retrying..."
                 sleep 2
               done
