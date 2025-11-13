@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vote
+  labels:
+    app: vote
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vote
+  template:
+    metadata:
+      labels:
+        app: vote
+    spec:
+      nodeSelector:
+        role: mainapp
+      initContainers:
+        - name: wait-for-redis
+          image: busybox:1.36
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for Redis..."
+              until nc -z redis-headless 6379 >/dev/null 2>&1; do
+                echo "Redis not ready, retrying..."
+                sleep 2
+              done
+              echo "Redis is ready!"
+      containers:
+        - name: vote
+          image: dockersamples/examplevotingapp_vote
+          ports:
+            - containerPort: 80
+          env:
+            - name: REDIS_HOST
+              value: redis-headless
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vote-service
+spec:
+  selector:
+    app: vote
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30080
